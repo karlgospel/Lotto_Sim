@@ -11,7 +11,11 @@ def lotto():
         chosen numbers. This is repeated for as many times as stated by the user. Each time the relevant
         amount of numbers match, the corresponding prize money is totalled up. The total prize money is
         returned and the 'updateResults' function is called to display the results to the user"""
-    ballPicks = {int(pickOne.get()), pickTwo.get(), pickThree.get(), pickFour.get(), pickFive.get(), pickSix.get()}
+    try:
+        ballPicks = {int(pickOne.get()), pickTwo.get(), pickThree.get(), pickFour.get(), pickFive.get(), pickSix.get()}
+    except:
+        return
+    
     if len(ballPicks) < 6:
         messagebox.showinfo("Hmmmmmmmmmm", "Please check your numbers: No duplicates")
         return
@@ -237,47 +241,47 @@ heading = tk.Label(window, text= "Lotto Simulator", font = ("Times New Roman", 2
 heading.grid(column=2, row =0, sticky='nsew', columnspan=3, pady=25)
 
 #Six boxes for user to pick their Lotto numbers
-pickLabel = tk.Label(window, width=6,text= "1. Pick your numbers (1-49):", font = ("Times New Roman", 14))
-pickLabel.grid(column=0, row =2, columnspan=3, sticky='nsew')
+pickLabel = tk.Label(window, text= "1. Pick your numbers (1-49):", font = ("Times New Roman", 14))
+pickLabel.grid(column=0, row =2, columnspan=3, sticky='w',padx=20)
 
-pickOne = tk.Entry(window,width=2, font = ("Times New Roman", 40),bg="red", fg="yellow", justify=tk.CENTER)
-pickOne.grid(column=0, row=3, pady=5, ipady=8, padx = 10, sticky='nsew')
+pickOne = tk.Entry(window,width=3, font = ("Times New Roman", 40),bg="red", fg="yellow", justify=tk.CENTER)
+pickOne.grid(column=0, row=3, pady=2, ipady=8, padx = (20,0), sticky='w')
 pickOne.config(validate="key", validatecommand=(reg, '%P'), relief=tk.RIDGE)
 
-pickTwo = tk.Entry(window,width=2, font = ("Times New Roman", 40),bg="green", fg="red", justify=tk.CENTER)
-pickTwo.grid(column=1, row=3, pady=5, ipady=8, padx = 10, sticky='nsew')
+pickTwo = tk.Entry(window,width=3, font = ("Times New Roman", 40),bg="green", fg="red", justify=tk.CENTER)
+pickTwo.grid(column=1, row=3, pady=2, ipady=8, padx = (20,0), sticky='w')
 pickTwo.config(validate="key", validatecommand=(reg, '%P'), relief=tk.RIDGE)
 
-pickThree = tk.Entry(window,width=2, font = ("Times New Roman", 40),bg="yellow", fg="orange", justify=tk.CENTER)
-pickThree.grid(column=2, row=3, pady=5, ipady=8, padx = 10, sticky='nsew')
+pickThree = tk.Entry(window,width=3, font = ("Times New Roman", 40),bg="yellow", fg="orange", justify=tk.CENTER)
+pickThree.grid(column=2, row=3, pady=2, ipady=8, padx = (20,0), sticky='w')
 pickThree.config(validate="key", validatecommand=(reg, '%P'), relief=tk.RIDGE)
 
-pickFour = tk.Entry(window,width=2, font = ("Times New Roman", 40),bg="blue", fg="pink", justify=tk.CENTER)
-pickFour.grid(column=3, row=3, pady=5, ipady=8, padx = 10, sticky='nsew')
+pickFour = tk.Entry(window,width=3, font = ("Times New Roman", 40),bg="blue", fg="pink", justify=tk.CENTER)
+pickFour.grid(column=3, row=3, pady=2, ipady=8, padx = (20,0), sticky='w')
 pickFour.config(validate="key", validatecommand=(reg, '%P'), relief=tk.RIDGE)
 
-pickFive = tk.Entry(window,width=2, font = ("Times New Roman", 40),bg="pink", fg="blue", justify=tk.CENTER)
-pickFive.grid(column=4, row=3, pady=5, ipady=8, padx = 10, sticky='nsew')
+pickFive = tk.Entry(window,width=3, font = ("Times New Roman", 40),bg="pink", fg="blue", justify=tk.CENTER)
+pickFive.grid(column=4, row=3, pady=2, ipady=8, padx = (20,0), sticky='w')
 pickFive.config(validate="key", validatecommand=(reg, '%P'), relief=tk.RIDGE)
 
-pickSix = tk.Entry(window,width=2, font = ("Times New Roman", 40),bg="orange", fg="red", justify=tk.CENTER)
-pickSix.grid(column=5, row=3, pady=5, ipady=8, padx = 10, sticky='nsew')
+pickSix = tk.Entry(window,width=3, font = ("Times New Roman", 40),bg="orange", fg="red", justify=tk.CENTER)
+pickSix.grid(column=5, row=3, pady=2, ipady=8, padx = (20,0), sticky='w')
 pickSix.config(validate="key", validatecommand=(reg, '%P'), relief=tk.RIDGE)
 
 #Button to randomise user's Lotto balls pick
 randomButton = tk.Button(window, text= "Lucky Dip", font = ("Times New Roman", 14),command=randomPick)
-randomButton.grid(column=2, row=4, pady=10, ipady=1, padx = 5, columnspan=3, sticky='nsew', rowspan=2)
+randomButton.grid(column=2, row=4, pady=10, ipady=1, padx = (20,0), columnspan=3, sticky='nsew', rowspan=2)
 
 #Choose the cost of a Lotto ticket
 ticketCostLabel = tk.Label(window, text= "2. Cost per ticket:", font = ("Times New Roman", 14))
-ticketCostLabel.grid(column=0, row =7, columnspan=2, sticky='nsew')
-ticketCost = tk.Entry(window,width=4, font = ("Times New Roman", 12))
-ticketCost.grid(column=4, row=7, pady=4, ipady=4, padx = 0, sticky='nsew', columnspan=2,rowspan=1)
+ticketCostLabel.grid(column=0, row =7, columnspan=2, sticky='w',padx=20)
+ticketCost = tk.Entry(window,width=4, font = ("Times New Roman", 20))
+ticketCost.grid(column=4, row=7, pady=10, ipady=4, padx = 10, sticky='nsew', columnspan=2,rowspan=1)
 ticketCost.config(validate="key", validatecommand=(reg, '%P'))
 
 #Choose how many times to run simulation
 runsLabel = tk.Label(window, text= "3. How many runs/weeks would you like to play?", font = ("Times New Roman", 14))
-runsLabel.grid(column=0, row =9, columnspan=4, sticky='nsew')
+runsLabel.grid(column=0, row =9, columnspan=4, sticky='w',padx=20)
 runs = tk.Entry(window,width=4, font = ("Times New Roman", 20))
 runs.grid(column=4, row=9, pady=10, ipady=4, padx = 10, sticky='nsew', columnspan=2,rowspan=1)
 runs.config(validate="key", validatecommand=(reg, '%P'))
@@ -347,6 +351,3 @@ window.columnconfigure(9, weight=1)
 window.columnconfigure(10, weight=1)
 
 window.mainloop()
-
-    
-
